@@ -8,4 +8,4 @@ In Lambda function, only suffixing the string to demonstrate that data stored in
 
 /** Data ingestion **/
 
-aws kinesis put-record --stream-name <kinesis-stream-name> --partition-key <partition-key-value> --data <actual-data>
+aws kinesis put-record --stream-name "kinesis-stream-name" --partition-key "partition-key-value" --data "actual-data"
