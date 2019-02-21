@@ -1,0 +1,50 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Action": [
+                "s3:AbortMultipartUpload",
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListBucketMultipartUploads",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${s3_bucket_name}",
+                "arn:aws:s3:::${s3_bucket_name}/*"
+            ]
+        },
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction",
+                "lambda:GetFunctionConfiguration"
+            ],
+            "Resource": "arn:aws:lambda:${region}:${account_number}:function:${application_name}DataTransformer:$LATEST"
+        },
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Action": [
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:${region}:${account_number}:log-group:/aws/${kinesis_stream_name}/${firehose_stream_name}:log-stream:*"
+            ]
+        },
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Action": [
+                "kinesis:DescribeStream",
+                "kinesis:GetShardIterator",
+                "kinesis:GetRecords"
+            ],
+            "Resource": "arn:aws:kinesis:${region}:${account_number}:stream/${kinesis_stream_name}"
+        }
+    ]
+}

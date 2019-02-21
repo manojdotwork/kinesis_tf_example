@@ -1,0 +1,5 @@
+application_name="ingestion-test"
+account_number=""
+environment="testing"
+shard_count="5"
+retention_period="48"
